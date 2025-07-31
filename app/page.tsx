@@ -51,7 +51,7 @@ function DashboardContent() {
       console.error("Error loading forms:", error)
       toast({
         title: "Error",
-        description: "Failed to load forms",
+        description: "Error cargando los formularios",
         variant: "destructive",
       })
     } finally {
@@ -65,13 +65,13 @@ function DashboardContent() {
       if (success) {
         await loadForms()
         toast({
-          title: "Success",
-          description: "Form deleted successfully",
+          title: "Éxito",
+          description: "Formulario eliminado con éxito",
         })
       } else {
         toast({
           title: "Error",
-          description: "Failed to delete form",
+          description: "Error al eliminar el formulario",
           variant: "destructive",
         })
       }
@@ -79,7 +79,7 @@ function DashboardContent() {
       console.error("Error deleting form:", error)
       toast({
         title: "Error",
-        description: "Failed to delete form",
+        description: "Error al eliminar el formulario",
         variant: "destructive",
       })
     }
@@ -102,7 +102,7 @@ function DashboardContent() {
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-2 text-gray-600">Loading forms...</p>
+            <p className="mt-2 text-gray-600">Cargando formularios...</p>
           </div>
         </div>
       </div>
@@ -117,11 +117,11 @@ function DashboardContent() {
           <Alert className="mb-6 border-amber-200 bg-amber-50">
             <Database className="h-4 w-4 text-amber-600" />
             <AlertDescription className="text-amber-800">
-              <strong>Demo Mode Active:</strong> You're using local storage. Data will persist in this browser but won't
-              be accessible from other devices.
+              <strong>Modo Demo Activo:</strong> Estás utilizando almacenamiento local. Los datos persistirán en este navegador, pero no estarán
+              disponibles desde otros dispositivos.
               <br />
               <span className="text-sm">
-                To enable full cloud functionality, configure Supabase environment variables.
+                Para habilitar la funcionalidad completa en la nube, configura las variables de entorno de Supabase.
               </span>
             </AlertDescription>
           </Alert>
@@ -129,16 +129,16 @@ function DashboardContent() {
 
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">My Forms</h1>
+            <h1 className="text-3xl font-bold text-gray-900">Mis Formularios</h1>
             <p className="text-gray-600 mt-2">
-              Create and manage your forms
-              {!isSupabaseConfigured && " (Demo Mode)"}
+              Crea y gestiona tus formularios
+              {!isSupabaseConfigured && " (Modo Demo)"}
             </p>
           </div>
           <Link href="/create">
             <Button>
               <Plus className="h-4 w-4 mr-2" />
-              Create Form
+              Crear Formulario
             </Button>
           </Link>
         </div>
@@ -146,12 +146,12 @@ function DashboardContent() {
         {forms.length === 0 ? (
           <div className="text-center py-12">
             <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No forms yet</h3>
-            <p className="text-gray-600 mb-4">Get started by creating your first form</p>
+            <h3 className="text-lg font-medium text-gray-900 mb-2">No hay formularios</h3>
+            <p className="text-gray-600 mb-4">Comienza creando tu primer formulario</p>
             <Link href="/create">
               <Button>
                 <Plus className="h-4 w-4 mr-2" />
-                Create Your First Form
+                Crear tu primer formulario
               </Button>
             </Link>
           </div>
@@ -203,7 +203,7 @@ function FormCard({
           <Link href={`/create?id=${form.id}`} className="flex-1">
             <Button variant="outline" size="sm" className="w-full bg-transparent">
               <FileText className="h-4 w-4 mr-2" />
-              Edit
+              Editar
             </Button>
           </Link>
           {form.isPublished && (
@@ -256,7 +256,7 @@ function FormCard({
               }}
             >
               <Share className="h-4 w-4 mr-2" />
-              Copy Share Link
+              Copiar enlace para compartir
             </Button>
           </div>
         )}
