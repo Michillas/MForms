@@ -23,6 +23,21 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core"
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable"
 
 import { v4 as uuidv4 } from 'uuid';
 
@@ -101,6 +116,29 @@ function CreateFormContent() {
       ...prev,
       questions: prev.questions.filter((_, i) => i !== index),
     }))
+  }
+
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  )
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event
+
+    if (over && active.id !== over.id) {
+      setForm((prev) => {
+        const oldIndex = prev.questions.findIndex((q) => q.id === active.id)
+        const newIndex = prev.questions.findIndex((q) => q.id === over.id)
+
+        return {
+          ...prev,
+          questions: arrayMove(prev.questions, oldIndex, newIndex),
+        }
+      })
+    }
   }
 
   const saveForm = async () => {
@@ -289,14 +327,25 @@ function CreateFormContent() {
                 </CardContent>
               </Card>
             ) : (
-              form.questions.map((question, index) => (
-                <QuestionEditor
-                  key={question.id}
-                  question={question}
-                  onUpdate={(updatedQuestion) => updateQuestion(index, updatedQuestion)}
-                  onDelete={() => deleteQuestion(index)}
-                />
-              ))
+              <DndContext
+                sensors={sensors}
+                collisionDetection={closestCenter}
+                onDragEnd={handleDragEnd}
+              >
+                <SortableContext
+                  items={form.questions.map((q) => q.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  {form.questions.map((question, index) => (
+                    <QuestionEditor
+                      key={question.id}
+                      question={question}
+                      onUpdate={(updatedQuestion) => updateQuestion(index, updatedQuestion)}
+                      onDelete={() => deleteQuestion(index)}
+                    />
+                  ))}
+                </SortableContext>
+              </DndContext>
             )}
           </div>
         </div>

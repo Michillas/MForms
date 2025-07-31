@@ -10,6 +10,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Switch } from "@/components/ui/switch"
 import { Card, CardContent, CardHeader } from "@/components/ui/card"
 import { Trash2, Plus, GripVertical } from "lucide-react"
+import { useSortable } from "@dnd-kit/sortable"
+import { CSS } from "@dnd-kit/utilities"
 
 interface QuestionEditorProps {
   question: FormQuestion
@@ -19,6 +21,21 @@ interface QuestionEditorProps {
 
 export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorProps) {
   const [localQuestion, setLocalQuestion] = useState(question)
+
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id: question.id })
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : 1,
+  }
 
   const handleUpdate = (updates: Partial<FormQuestion>) => {
     const updated = { ...localQuestion, ...updates }
@@ -45,9 +62,15 @@ export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorP
   const needsOptions = ["multiple-choice", "checkbox", "dropdown"].includes(localQuestion.type)
 
   return (
-    <Card className="mb-4">
+    <Card ref={setNodeRef} style={style} className="mb-4">
       <CardHeader className="flex flex-row items-center space-y-0 pb-2">
-        <GripVertical className="h-5 w-5 text-gray-400 mr-2" />
+        <div
+          {...attributes}
+          {...listeners}
+          className="cursor-grab active:cursor-grabbing p-1 rounded hover:bg-gray-100"
+        >
+          <GripVertical className="h-5 w-5 text-gray-400" />
+        </div>
         <div className="flex-1 space-y-2">
           <div className="flex items-center gap-2">
             <Select
