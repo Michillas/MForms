@@ -58,11 +58,11 @@ export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorP
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="short-answer">Short Answer</SelectItem>
-                <SelectItem value="paragraph">Paragraph</SelectItem>
-                <SelectItem value="multiple-choice">Multiple Choice</SelectItem>
-                <SelectItem value="checkbox">Checkboxes</SelectItem>
-                <SelectItem value="dropdown">Dropdown</SelectItem>
+                <SelectItem value="short-answer">Respuesta Corta</SelectItem>
+                <SelectItem value="paragraph">Párrafo</SelectItem>
+                <SelectItem value="multiple-choice">Opción Múltiple</SelectItem>
+                <SelectItem value="checkbox">Casillas de Verificación</SelectItem>
+                <SelectItem value="dropdown">Desplegable</SelectItem>
               </SelectContent>
             </Select>
             <Button variant="ghost" size="sm" onClick={onDelete}>
@@ -73,36 +73,36 @@ export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorP
       </CardHeader>
       <CardContent className="space-y-4">
         <div>
-          <Label htmlFor={`question-title-${localQuestion.id}`}>Question Title</Label>
+          <Label htmlFor={`question-title-${localQuestion.id}`}>Título de la Pregunta</Label>
           <Input
             id={`question-title-${localQuestion.id}`}
             value={localQuestion.title}
             onChange={(e) => handleUpdate({ title: e.target.value })}
-            placeholder="Enter your question"
+            placeholder="Ingrese su pregunta"
           />
         </div>
 
         <div>
-          <Label htmlFor={`question-desc-${localQuestion.id}`}>Description (optional)</Label>
+          <Label htmlFor={`question-desc-${localQuestion.id}`}>Descripción (opcional)</Label>
           <Textarea
             id={`question-desc-${localQuestion.id}`}
             value={localQuestion.description || ""}
             onChange={(e) => handleUpdate({ description: e.target.value })}
-            placeholder="Add a description"
+            placeholder="Agregar una descripción"
             rows={2}
           />
         </div>
 
         {needsOptions && (
           <div>
-            <Label>Options</Label>
+            <Label>Opciones</Label>
             <div className="space-y-2">
               {localQuestion.options?.map((option, index) => (
                 <div key={index} className="flex items-center gap-2">
                   <Input
                     value={option}
                     onChange={(e) => updateOption(index, e.target.value)}
-                    placeholder={`Option ${index + 1}`}
+                    placeholder={`Opción ${index + 1}`}
                   />
                   <Button variant="ghost" size="sm" onClick={() => removeOption(index)}>
                     <Trash2 className="h-4 w-4" />
@@ -123,7 +123,7 @@ export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorP
             checked={localQuestion.required}
             onCheckedChange={(checked) => handleUpdate({ required: checked })}
           />
-          <Label htmlFor={`required-${localQuestion.id}`}>Required</Label>
+          <Label htmlFor={`required-${localQuestion.id}`}>Requerido</Label>
         </div>
       </CardContent>
     </Card>

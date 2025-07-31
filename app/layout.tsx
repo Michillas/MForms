@@ -8,9 +8,8 @@ import { AuthProvider } from "@/components/auth/auth-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Google Forms Clone",
-  description: "Create and manage forms with ease",
-    generator: 'v0.dev'
+  title: "MForms",
+  description: "Formularios personalizados y gestión de respuestas",
 }
 
 export default function RootLayout({
@@ -19,7 +18,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <body className={inter.className}>
         <AuthProvider>
           {children}

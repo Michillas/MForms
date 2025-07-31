@@ -42,7 +42,7 @@ function FormResponsesContent() {
   const exportToCSV = () => {
     if (!form || responses.length === 0) return
 
-    const headers = ["Submission Date", ...form.questions.map((q) => q.title)]
+    const headers = ["Fecha", ...form.questions.map((q) => q.title)]
     const rows = responses.map((response) => [
       new Date(response.submittedAt).toLocaleString(),
       ...form.questions.map((q) => {
@@ -72,7 +72,7 @@ function FormResponsesContent() {
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-2 text-gray-600">Loading responses...</p>
+            <p className="mt-2 text-gray-600">Cargando respuestas...</p>
           </div>
         </div>
       </div>
@@ -86,8 +86,8 @@ function FormResponsesContent() {
         <div className="container mx-auto px-4 py-8">
           <Card className="w-full max-w-md mx-auto">
             <CardContent className="text-center py-8">
-              <h2 className="text-xl font-semibold mb-2">Form Not Found</h2>
-              <p className="text-gray-600">This form may not exist.</p>
+              <h2 className="text-xl font-semibold mb-2">Formulario No Encontrado</h2>
+              <p className="text-gray-600">Este formulario puede no existir.</p>
             </CardContent>
           </Card>
         </div>
@@ -107,12 +107,12 @@ function FormResponsesContent() {
             </Button>
             <div>
               <h1 className="text-2xl font-bold">{form.title}</h1>
-              <p className="text-gray-600">Form Responses</p>
+              <p className="text-gray-600">Respuestas del Formulario</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
             <Badge variant="secondary">
-              {responses.length} {responses.length === 1 ? "Response" : "Responses"}
+              {responses.length} {responses.length === 1 ? "Respuesta" : "Respuestas"}
             </Badge>
             {responses.length > 0 && (
               <Button variant="outline" onClick={exportToCSV}>
@@ -126,8 +126,8 @@ function FormResponsesContent() {
         {responses.length === 0 ? (
           <Card>
             <CardContent className="text-center py-12">
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No responses yet</h3>
-              <p className="text-gray-600 mb-4">Share your form to start collecting responses</p>
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No hay respuestas aún</h3>
+              <p className="text-gray-600 mb-4">Comparte tu formulario para comenzar a recibir respuestas</p>
               {form.isPublished && (
                 <Button
                   variant="outline"
@@ -136,7 +136,7 @@ function FormResponsesContent() {
                     navigator.clipboard.writeText(url)
                   }}
                 >
-                  Copy Form Link
+                  Copiar enlace del formulario
                 </Button>
               )}
             </CardContent>
@@ -168,7 +168,7 @@ function FormResponsesContent() {
                                 ))}
                               </ul>
                             ) : (
-                              <p>{answer || <em className="text-gray-400">No answer</em>}</p>
+                              <p>{answer || <em className="text-gray-400">Sin respuesta</em>}</p>
                             )}
                           </div>
                         </div>

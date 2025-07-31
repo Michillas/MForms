@@ -23,7 +23,7 @@ export function QuestionRenderer({ question, value, onChange, disabled }: Questi
           <Input
             value={(value as string) || ""}
             onChange={(e) => onChange(e.target.value)}
-            placeholder="Your answer"
+            placeholder="Tu respuesta"
             disabled={disabled}
           />
         )
@@ -33,7 +33,7 @@ export function QuestionRenderer({ question, value, onChange, disabled }: Questi
           <Textarea
             value={(value as string) || ""}
             onChange={(e) => onChange(e.target.value)}
-            placeholder="Your answer"
+            placeholder="Tu respuesta"
             rows={4}
             disabled={disabled}
           />
@@ -79,7 +79,7 @@ export function QuestionRenderer({ question, value, onChange, disabled }: Questi
         return (
           <Select value={(value as string) || ""} onValueChange={onChange} disabled={disabled}>
             <SelectTrigger>
-              <SelectValue placeholder="Choose an option" />
+              <SelectValue placeholder="Selecciona una opción" />
             </SelectTrigger>
             <SelectContent>
               {question.options?.map((option, index) => (

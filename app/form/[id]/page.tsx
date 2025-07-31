@@ -34,7 +34,7 @@ export default function FormFill() {
         setForm(foundForm)
       }
     } catch (error) {
-      console.error("Error loading form:", error)
+      console.error("Error cargando el formulario:", error)
     } finally {
       setLoading(false)
     }
@@ -69,7 +69,7 @@ export default function FormFill() {
     if (!form || !validateForm()) {
       toast({
         title: "Error",
-        description: "Please fill in all required fields",
+        description: "Por favor, completa todos los campos obligatorios",
         variant: "destructive",
       })
       return
@@ -89,13 +89,13 @@ export default function FormFill() {
       if (success) {
         setIsSubmitted(true)
         toast({
-          title: "Success",
-          description: "Your response has been submitted",
+          title: "Éxito",
+          description: "Tu respuesta ha sido enviada",
         })
       } else {
         toast({
           title: "Error",
-          description: "Failed to submit response",
+          description: "No se pudo enviar la respuesta",
           variant: "destructive",
         })
       }
@@ -103,7 +103,7 @@ export default function FormFill() {
       console.error("Error submitting response:", error)
       toast({
         title: "Error",
-        description: "Failed to submit response",
+        description: "No se pudo enviar la respuesta",
         variant: "destructive",
       })
     } finally {
@@ -116,7 +116,7 @@ export default function FormFill() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-2 text-gray-600">Loading form...</p>
+          <p className="mt-2 text-gray-600">Cargando formulario...</p>
         </div>
       </div>
     )
@@ -127,8 +127,8 @@ export default function FormFill() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <Card className="w-full max-w-md">
           <CardContent className="text-center py-8">
-            <h2 className="text-xl font-semibold mb-2">Form Not Found</h2>
-            <p className="text-gray-600">This form may not exist or is not published.</p>
+            <h2 className="text-xl font-semibold mb-2">Formulario No Encontrado</h2>
+            <p className="text-gray-600">Este formulario puede no existir o no estar publicado.</p>
           </CardContent>
         </Card>
       </div>
@@ -141,8 +141,8 @@ export default function FormFill() {
         <Card className="w-full max-w-md">
           <CardContent className="text-center py-8">
             <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
-            <h2 className="text-xl font-semibold mb-2">Thank You!</h2>
-            <p className="text-gray-600">Your response has been recorded.</p>
+            <h2 className="text-xl font-semibold mb-2">¡Gracias!</h2>
+            <p className="text-gray-600">Tu respuesta ha sido registrada.</p>
           </CardContent>
         </Card>
       </div>
@@ -174,7 +174,7 @@ export default function FormFill() {
 
           <div className="flex justify-end">
             <Button onClick={submitForm} disabled={isSubmitting} size="lg">
-              {isSubmitting ? "Submitting..." : "Submit"}
+              {isSubmitting ? "Enviando..." : "Enviar"}
             </Button>
           </div>
         </div>

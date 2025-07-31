@@ -69,7 +69,7 @@ function CreateFormContent() {
       console.error("Error loading form:", error)
       toast({
         title: "Error",
-        description: "Failed to load form",
+        description: "Error cargando el formulario",
         variant: "destructive",
       })
     }
@@ -107,7 +107,7 @@ function CreateFormContent() {
     if (!form.title.trim()) {
       toast({
         title: "Error",
-        description: "Please enter a form title",
+        description: "Por favor ingresa un título para el formulario",
         variant: "destructive",
       })
       return
@@ -118,13 +118,13 @@ function CreateFormContent() {
       const success = await storage.saveForm(form)
       if (success) {
         toast({
-          title: "Success",
-          description: "Form saved successfully",
+          title: "Éxito",
+          description: "Formulario guardado con éxito",
         })
       } else {
         toast({
           title: "Error",
-          description: "Failed to save form",
+          description: "Error al guardar el formulario",
           variant: "destructive",
         })
       }
@@ -132,7 +132,7 @@ function CreateFormContent() {
       console.error("Error saving form:", error)
       toast({
         title: "Error",
-        description: "Failed to save form",
+        description: "Error al guardar el formulario",
         variant: "destructive",
       })
     } finally {
@@ -148,15 +148,15 @@ function CreateFormContent() {
       const success = await storage.saveForm(updatedForm)
       if (success) {
         toast({
-          title: updatedForm.isPublished ? "Form Published" : "Form Unpublished",
-          description: updatedForm.isPublished ? "Your form is now live and can be shared" : "Your form is now private",
+          title: updatedForm.isPublished ? "Formulario Publicado" : "Formulario No Publicado",
+          description: updatedForm.isPublished ? "Tu formulario está ahora en vivo y puede ser compartido" : "Tu formulario está ahora privado",
         })
       }
     } catch (error) {
       console.error("Error updating form:", error)
       toast({
         title: "Error",
-        description: "Failed to update form",
+        description: "Error al actualizar el formulario",
         variant: "destructive",
       })
     }
@@ -165,8 +165,8 @@ function CreateFormContent() {
   const copyShareUrl = () => {
     navigator.clipboard.writeText(shareUrl)
     toast({
-      title: "Link Copied",
-      description: "Share link copied to clipboard",
+      title: "Link Copiado",
+      description: "Enlace compartido copiado al portapapeles",
     })
   }
 
@@ -178,11 +178,11 @@ function CreateFormContent() {
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => router.push("/")}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Volver al Dashboard
             </Button>
             <div>
-              <h1 className="text-2xl font-bold">Form Builder</h1>
-              <p className="text-gray-600">Create and customize your form</p>
+              <h1 className="text-2xl font-bold">Constructor de Formularios</h1>
+              <p className="text-gray-600">Crea y personaliza tu formulario</p>
             </div>
           </div>
           <div className="flex items-center gap-2">
@@ -205,12 +205,12 @@ function CreateFormContent() {
                   </DialogTrigger>
                   <DialogContent>
                     <DialogHeader>
-                      <DialogTitle>Share Your Form</DialogTitle>
-                      <DialogDescription>Copy the link below to share your form with others</DialogDescription>
+                      <DialogTitle>Comparte tu Formulario</DialogTitle>
+                      <DialogDescription>Copiar el enlace a continuación para compartir tu formulario con otros</DialogDescription>
                     </DialogHeader>
                     <div className="flex items-center gap-2">
                       <Input value={shareUrl} readOnly />
-                      <Button onClick={copyShareUrl}>Copy</Button>
+                      <Button onClick={copyShareUrl}>Copiar</Button>
                     </div>
                   </DialogContent>
                 </Dialog>
@@ -218,7 +218,7 @@ function CreateFormContent() {
             )}
             <div className="flex items-center space-x-2">
               <Switch id="publish" checked={form.isPublished} onCheckedChange={togglePublish} />
-              <Label htmlFor="publish">{form.isPublished ? "Published" : "Draft"}</Label>
+              <Label htmlFor="publish">{form.isPublished ? "Publicado" : "Borrador"}</Label>
             </div>
           </div>
         </div>
@@ -231,38 +231,38 @@ function CreateFormContent() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label htmlFor="form-title">Form Title</Label>
+                <Label htmlFor="form-title">Título del Formulario</Label>
                 <Input
                   id="form-title"
                   value={form.title}
                   onChange={(e) => setForm((prev) => ({ ...prev, title: e.target.value }))}
-                  placeholder="Enter form title"
+                  placeholder="Ingrese el título del formulario"
                 />
               </div>
               <div>
-                <Label htmlFor="form-description">Description</Label>
+                <Label htmlFor="form-description">Descripción</Label>
                 <Textarea
                   id="form-description"
                   value={form.description}
                   onChange={(e) => setForm((prev) => ({ ...prev, description: e.target.value }))}
-                  placeholder="Enter form description"
+                  placeholder="Ingrese la descripción del formulario"
                   rows={3}
                 />
               </div>
               {form.isPublished && (
                 <div className="border-t pt-4">
-                  <Label>Share Your Form</Label>
+                  <Label>Comparte tu Formulario</Label>
                   <div className="flex items-center gap-2 mt-2">
                     <Input value={shareUrl} readOnly className="flex-1" />
                     <Button onClick={copyShareUrl} variant="outline">
-                      Copy Link
+                      Copiar Enlace
                     </Button>
                     <Button onClick={() => window.open(`/form/${form.id}`, "_blank")} variant="outline">
                       <Eye className="h-4 w-4 mr-2" />
-                      Preview
+                      Vista Previa
                     </Button>
                   </div>
-                  <p className="text-sm text-gray-600 mt-1">Share this link with others to collect responses</p>
+                  <p className="text-sm text-gray-600 mt-1">Comparte este enlace con otros para recopilar respuestas</p>
                 </div>
               )}
             </CardContent>
@@ -271,20 +271,20 @@ function CreateFormContent() {
           {/* Questions */}
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <h2 className="text-xl font-semibold">Questions</h2>
+              <h2 className="text-xl font-semibold">Preguntas</h2>
               <Button onClick={addQuestion}>
                 <Plus className="h-4 w-4 mr-2" />
-                Add Question
+                Agregar Pregunta
               </Button>
             </div>
 
             {form.questions.length === 0 ? (
               <Card>
                 <CardContent className="text-center py-8">
-                  <p className="text-gray-600 mb-4">No questions added yet</p>
+                  <p className="text-gray-600 mb-4">No hay preguntas agregadas aún</p>
                   <Button onClick={addQuestion}>
                     <Plus className="h-4 w-4 mr-2" />
-                    Add Your First Question
+                    Agregar tu primera pregunta
                   </Button>
                 </CardContent>
               </Card>

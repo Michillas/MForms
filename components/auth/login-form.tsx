@@ -32,10 +32,10 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
     try {
       const result = await signIn(email, password)
       if (!result.success) {
-        setError(result.error || "Login failed")
+        setError(result.error || "Error durante el inicio de sesión")
       }
     } catch (err) {
-      setError("An error occurred during login")
+      setError("Error durante el inicio de sesión")
     } finally {
       setIsLoading(false)
     }
@@ -44,9 +44,9 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
-        <CardTitle className="text-2xl">{isSupabaseConfigured ? "Admin Login" : "Demo Login"}</CardTitle>
+        <CardTitle className="text-2xl">{isSupabaseConfigured ? "Inicio de Sesión de Administrador" : "Inicio de Sesión de Demostración"}</CardTitle>
         <CardDescription>
-          {isSupabaseConfigured ? "Sign in to manage your forms" : "Enter any email and password to continue"}
+          {isSupabaseConfigured ? "Inicia sesión para gestionar tus formularios" : "Ingresa cualquier correo electrónico y contraseña para continuar"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -54,8 +54,7 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
           <Alert className="mb-4">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>Demo Mode:</strong> You can use any email and password to sign in. Data will be stored locally in
-              your browser.
+              <strong>Modo de Demostración:</strong> Puedes usar cualquier correo electrónico y contraseña para iniciar sesión. Los datos se almacenarán localmente en tu navegador.
             </AlertDescription>
           </Alert>
         )}
@@ -74,20 +73,20 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder={isSupabaseConfigured ? "Enter your email" : "demo@example.com"}
+              placeholder={isSupabaseConfigured ? "Ingrese su correo electrónico" : "demo@example.com"}
               required
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <div className="relative">
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder={isSupabaseConfigured ? "Enter your password" : "any password"}
+                placeholder={isSupabaseConfigured ? "Ingrese su contraseña" : "cualquier contraseña"}
                 required
               />
               <Button
@@ -103,23 +102,23 @@ export function LoginForm({ onToggleMode }: LoginFormProps) {
           </div>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Signing in..." : "Sign In"}
+            {isLoading ? "Iniciando sesión..." : "Iniciar Sesión"}
           </Button>
 
           <div className="text-center">
             <Button type="button" variant="link" onClick={onToggleMode}>
-              {"Don't have an account? Sign up"}
+              {"¿No tienes una cuenta? Regístrate"}
             </Button>
           </div>
         </form>
 
         {!isSupabaseConfigured && (
           <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-            <h4 className="font-medium text-blue-900 mb-2">Quick Start</h4>
+            <h4 className="font-medium text-blue-900 mb-2">Inicio Rápido</h4>
             <div className="text-sm text-blue-800 space-y-1">
-              <p>• Use any email address (e.g., demo@example.com)</p>
-              <p>• Use any password (e.g., demo123)</p>
-              <p>• Your data will be saved locally</p>
+              <p>• Usa cualquier dirección de correo electrónico (por ejemplo, demo@example.com)</p>
+              <p>• Usa cualquier contraseña (por ejemplo, demo123)</p>
+              <p>• Tus datos se guardarán localmente</p>
             </div>
           </div>
         )}

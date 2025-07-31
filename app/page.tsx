@@ -189,15 +189,15 @@ function FormCard({
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <CardTitle className="text-lg line-clamp-2">{form.title}</CardTitle>
-            <CardDescription className="line-clamp-2 mt-1">{form.description || "No description"}</CardDescription>
+            <CardDescription className="line-clamp-2 mt-1">{form.description || "Sin descripción"}</CardDescription>
           </div>
-          <Badge variant={form.isPublished ? "default" : "secondary"}>{form.isPublished ? "Published" : "Draft"}</Badge>
+          <Badge variant={form.isPublished ? "default" : "secondary"}>{form.isPublished ? "Publicado" : "Borrador"}</Badge>
         </div>
       </CardHeader>
       <CardContent>
         <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
-          <span>{form.questions.length} questions</span>
-          <span>{responseCount} responses</span>
+          <span>{form.questions.length} preguntas</span>
+          <span>{responseCount} respuestas</span>
         </div>
         <div className="flex items-center gap-2">
           <Link href={`/create?id=${form.id}`} className="flex-1">
@@ -210,7 +210,7 @@ function FormCard({
             <Link href={`/form/${form.id}`} className="flex-1">
               <Button size="sm" className="w-full">
                 <Eye className="h-4 w-4 mr-2" />
-                Fill Form
+                Rellenar formulario
               </Button>
             </Link>
           )}
@@ -227,15 +227,15 @@ function FormCard({
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>Delete Form</AlertDialogTitle>
+                <AlertDialogTitle>Borrar Formulario</AlertDialogTitle>
                 <AlertDialogDescription>
-                  Are you sure you want to delete "{form.title}"? This action cannot be undone and will also delete all
-                  responses.
+                  ¿Estás seguro de que quieres eliminar "{form.title}"? Esta acción no se puede deshacer y también eliminará todas las
+                  respuestas.
                 </AlertDialogDescription>
               </AlertDialogHeader>
               <AlertDialogFooter>
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
-                <AlertDialogAction onClick={() => onDelete(form.id)}>Delete</AlertDialogAction>
+                <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                <AlertDialogAction onClick={() => onDelete(form.id)}>Eliminar</AlertDialogAction>
               </AlertDialogFooter>
             </AlertDialogContent>
           </AlertDialog>
@@ -250,8 +250,8 @@ function FormCard({
                 const shareUrl = `${window.location.origin}/form/${form.id}`
                 navigator.clipboard.writeText(shareUrl)
                 toast({
-                  title: "Link Copied",
-                  description: "Form link copied to clipboard",
+                  title: "Link Copiado",
+                  description: "El enlace del formulario ha sido copiado al portapapeles",
                 })
               }}
             >

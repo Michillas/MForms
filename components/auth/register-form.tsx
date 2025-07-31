@@ -31,12 +31,12 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
     setError("")
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match")
+      setError("Las contraseñas no coinciden")
       return
     }
 
     if (isSupabaseConfigured && password.length < 6) {
-      setError("Password must be at least 6 characters")
+      setError("Tiene que tener mínimo 6 caracteres")
       return
     }
 
@@ -45,10 +45,10 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
     try {
       const result = await signUp(email, password, name)
       if (!result.success) {
-        setError(result.error || "Registration failed")
+        setError(result.error || "Error al registrar")
       }
     } catch (err) {
-      setError("An error occurred during registration")
+      setError("Ocurrió un error durante el registro")
     } finally {
       setIsLoading(false)
     }
@@ -58,10 +58,10 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
     <Card className="w-full max-w-md">
       <CardHeader className="text-center">
         <CardTitle className="text-2xl">
-          {isSupabaseConfigured ? "Create Admin Account" : "Demo Registration"}
+          {isSupabaseConfigured ? "Crear Cuenta de Administrador" : "Registro de Demostración"}
         </CardTitle>
         <CardDescription>
-          {isSupabaseConfigured ? "Sign up to start creating forms" : "Create a demo account to get started"}
+          {isSupabaseConfigured ? "Regístrate para comenzar a crear formularios" : "Crea una cuenta de demostración para comenzar"}
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -69,8 +69,7 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
           <Alert className="mb-4">
             <Info className="h-4 w-4" />
             <AlertDescription>
-              <strong>Demo Mode:</strong> You can use any information to create an account. Data will be stored locally
-              in your browser.
+              <strong>Modo de Demostración:</strong> Puedes usar cualquier información para crear una cuenta. Los datos se almacenarán localmente en tu navegador.
             </AlertDescription>
           </Alert>
         )}
@@ -83,13 +82,13 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
           )}
 
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name">Nombre Completo</Label>
             <Input
               id="name"
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="Enter your full name"
+              placeholder="Ingrese su nombre completo"
               required
             />
           </div>
@@ -101,20 +100,20 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Ingrese su correo electrónico"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password">Contraseña</Label>
             <div className="relative">
               <Input
                 id="password"
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter your password"
+                placeholder="Ingrese su contraseña"
                 required
               />
               <Button
@@ -130,24 +129,24 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="confirmPassword">Confirm Password</Label>
+            <Label htmlFor="confirmPassword">Confirmar Contraseña</Label>
             <Input
               id="confirmPassword"
               type="password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Confirm your password"
+              placeholder="Confirma tu contraseña"
               required
             />
           </div>
 
           <Button type="submit" className="w-full" disabled={isLoading}>
-            {isLoading ? "Creating account..." : "Create Account"}
+            {isLoading ? "Creando cuenta..." : "Crear Cuenta"}
           </Button>
 
           <div className="text-center">
             <Button type="button" variant="link" onClick={onToggleMode}>
-              Already have an account? Sign in
+              ¿Ya tienes una cuenta? Iniciar sesión
             </Button>
           </div>
         </form>
