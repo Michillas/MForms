@@ -79,7 +79,7 @@ function CreateFormContent() {
     const newQuestion: FormQuestion = {
       id: uuidv4(),
       type: "short-answer",
-      title: "Untitled Question",
+      title: "Pregunta sin título",
       required: false,
       options: [],
     }

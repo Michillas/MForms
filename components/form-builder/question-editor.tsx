@@ -111,7 +111,7 @@ export function QuestionEditor({ question, onUpdate, onDelete }: QuestionEditorP
               ))}
               <Button variant="outline" size="sm" onClick={addOption}>
                 <Plus className="h-4 w-4 mr-2" />
-                Add Option
+                Agregar Opción
               </Button>
             </div>
           </div>
