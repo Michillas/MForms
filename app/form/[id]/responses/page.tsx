@@ -117,7 +117,7 @@ function FormResponsesContent() {
             {responses.length > 0 && (
               <Button variant="outline" onClick={exportToCSV}>
                 <Download className="h-4 w-4 mr-2" />
-                Export CSV
+                Exportar a CSV
               </Button>
             )}
           </div>
@@ -147,7 +147,7 @@ function FormResponsesContent() {
               <Card key={response.id}>
                 <CardHeader>
                   <CardTitle className="text-lg">
-                    Response #{responses.length - index}
+                    Respuesta #{responses.length - index}
                     <span className="text-sm font-normal text-gray-600 ml-2">
                       {new Date(response.submittedAt).toLocaleString()}
                     </span>
