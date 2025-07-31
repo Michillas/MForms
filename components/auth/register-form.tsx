@@ -36,7 +36,7 @@ export function RegisterForm({ onToggleMode }: RegisterFormProps) {
     }
 
     if (isSupabaseConfigured && password.length < 6) {
-      setError("Tiene que tener mínimo 6 caracteres")
+      setError("La contraseña tiene que tener mínimo 6 caracteres")
       return
     }
 
