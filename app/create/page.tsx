@@ -34,7 +34,7 @@ function CreateFormContent() {
 
   const [form, setForm] = useState<Form>({
     id: "",
-    title: "Untitled Form",
+    title: "Sin título",
     description: "",
     questions: [],
     isPublished: false,
@@ -188,19 +188,19 @@ function CreateFormContent() {
           <div className="flex items-center gap-2">
             <Button variant="outline" onClick={saveForm} disabled={loading}>
               <Save className="h-4 w-4 mr-2" />
-              {loading ? "Saving..." : "Save"}
+              {loading ? "Guardando..." : "Guardar"}
             </Button>
             {form.isPublished && (
               <>
                 <Button variant="outline" onClick={() => window.open(`/form/${form.id}`, "_blank")}>
                   <Eye className="h-4 w-4 mr-2" />
-                  Preview
+                  Vista Previa
                 </Button>
                 <Dialog>
                   <DialogTrigger asChild>
                     <Button variant="outline">
                       <Share className="h-4 w-4 mr-2" />
-                      Share
+                      Compartir
                     </Button>
                   </DialogTrigger>
                   <DialogContent>
@@ -227,7 +227,7 @@ function CreateFormContent() {
           {/* Form Settings */}
           <Card>
             <CardHeader>
-              <CardTitle>Form Settings</CardTitle>
+              <CardTitle>Configuración del Formulario</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
