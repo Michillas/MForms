@@ -103,7 +103,7 @@ function FormResponsesContent() {
           <div className="flex items-center gap-4">
             <Button variant="ghost" onClick={() => router.push("/")}>
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Dashboard
+              Volver al Dashboard
             </Button>
             <div>
               <h1 className="text-2xl font-bold">{form.title}</h1>

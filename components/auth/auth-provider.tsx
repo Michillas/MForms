@@ -52,7 +52,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (result.success && result.user && !isSupabaseConfigured) {
       // Store demo user in localStorage
       localStorage.setItem("demo-user", JSON.stringify(result.user))
-      setUser(result.user)
+      const user: User = {
+        ...result.user,
+        app_metadata: {},
+        aud: 'authenticated',
+      }
+      setUser(user)
     }
     return result
   }
@@ -62,7 +67,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     if (result.success && result.user && !isSupabaseConfigured) {
       // Store demo user in localStorage
       localStorage.setItem("demo-user", JSON.stringify(result.user))
-      setUser(result.user)
+            const user: User = {
+        ...result.user,
+        app_metadata: {},
+        aud: 'authenticated',
+      }
+      setUser(user)
     }
     return result
   }
